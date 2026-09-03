@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8xLx3YB5OUY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Kevin pinto\\Desktop\\SistemaPos\\InventarioApi\\InventarioFront\\InventarioFront.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Kevin pinto\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.9\\microsoft.aspnetcore.app.internal.assets.10.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}

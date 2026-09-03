@@ -1,0 +1,205 @@
+@{
+    Layout = null;
+    var apiUrl = ViewBag.ApiUrl as string ?? "";
+    var nombreTienda = ViewBag.NombreTienda as string ?? "Mi Tienda";
+    var textoBienvenida = ViewBag.TextoBienvenida as string ?? "Bienvenido al sistema POS";
+}
+<!doctype html>
+<html class="h-full" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema POS - @nombreTienda</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/pos.css" asp-append-version="true" />
+</head>
+<body class="h-full spatial-bg text-white">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="mouse-light" id="mouse-light"></div>
+    <div class="grid-mesh"></div>
+
+    <div id="app" class="relative z-10 h-full flex flex-col overflow-hidden"
+         data-api-url="@apiUrl"
+         data-store-name="@nombreTienda"
+         data-welcome-text="@textoBienvenida">
+
+        <header class="flex items-center justify-between px-6 py-4 glass-card mx-4 mt-4" style="border-radius:16px;">
+            <div>
+                <h1 id="store-name" class="text-xl font-bold bg-gradient-to-r from-red-300 to-red-400 bg-clip-text text-transparent">@nombreTienda</h1>
+                <p id="welcome-text" class="text-xs text-white/40">@textoBienvenida</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-xs text-white/50" id="current-date"></span>
+            </div>
+        </header>
+
+        <nav class="flex gap-2 px-4 mt-3">
+            <button type="button" onclick="switchView('ventas')" id="nav-ventas" class="nav-item glass-card px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-2 active">
+                <i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> Ventas
+            </button>
+            <button type="button" onclick="switchView('inventario')" id="nav-inventario" class="nav-item glass-card px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-2">
+                <i data-lucide="package" style="width:16px;height:16px;"></i> Inventario
+            </button>
+            <button type="button" onclick="switchView('dashboard')" id="nav-dashboard" class="nav-item glass-card px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-2">
+                <i data-lucide="bar-chart-3" style="width:16px;height:16px;"></i> Dashboard
+            </button>
+        </nav>
+
+        <main class="flex-1 overflow-auto px-4 py-3">
+            <div id="view-ventas" class="h-full flex gap-3 fade-in">
+                <div class="flex-1 flex flex-col">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="relative flex-1">
+                            <i data-lucide="search" style="width:16px;height:16px;" class="absolute left-3 top-1/2 -translate-y-1/2 text-white/30"></i>
+                            <input type="text" id="search-products" placeholder="Buscar producto o escanear código..." class="input-glass w-full pl-10 pr-4 py-2.5 text-sm" oninput="filterProducts()">
+                        </div>
+                    </div>
+                    <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 overflow-auto flex-1 pr-1"></div>
+                </div>
+                <div class="w-72 glass flex flex-col p-4">
+                    <h3 class="font-semibold text-sm text-white/70 mb-3 flex items-center gap-2">
+                        <i data-lucide="receipt" style="width:16px;height:16px;"></i> Ticket de Venta
+                    </h3>
+                    <div id="cart-items" class="flex-1 overflow-auto space-y-2 mb-3"></div>
+                    <div class="border-t border-white/10 pt-3">
+                        <div class="flex justify-between text-lg font-bold">
+                            <span>Total:</span>
+                            <span id="cart-total" class="text-red-300">$0.00</span>
+                        </div>
+                        <button type="button" onclick="completeSale()" id="btn-complete-sale" class="btn-primary w-full py-3 rounded-xl text-sm font-semibold mt-3 flex items-center justify-center gap-2">
+                            <i data-lucide="check-circle" style="width:16px;height:16px;"></i> Completar Venta
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-inventario" class="hidden h-full flex flex-col fade-in">
+                <div class="glass p-5 mb-3">
+                    <h3 class="font-semibold text-sm text-white/70 mb-3">Agregar Producto</h3>
+                    <div class="mb-4 p-3 glass-card rounded-xl">
+                        <label class="text-xs text-white/50 block mb-2">Código de Barras (Lector o Manual)</label>
+                        <input type="text" id="inp-barcode" placeholder="Escanea o escribe el código..." class="input-glass w-full px-3 py-2.5 text-sm">
+                        <p class="text-[10px] text-white/30 mt-1">Presiona Enter para confirmar código</p>
+                    </div>
+                    <div id="barcode-exists-info" class="hidden glass-card rounded-xl p-4 mb-3">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-2xl" id="barcode-product-emoji"></span>
+                            <div>
+                                <p class="text-sm font-medium" id="barcode-product-name"></p>
+                                <p class="text-xs text-white/50">Stock actual: <span id="barcode-current-stock" class="text-emerald-300 font-semibold">0</span></p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 items-end">
+                            <div class="flex-1">
+                                <label class="text-xs text-white/50 block mb-1">Cantidad a agregar</label>
+                                <input type="number" id="inp-add-stock" value="1" min="1" class="input-glass w-full px-3 py-2 text-sm">
+                            </div>
+                            <button type="button" onclick="confirmAddStock()" class="btn-primary px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap">
+                                <i data-lucide="package-plus" style="width:14px;height:14px;"></i> Agregar Stock
+                            </button>
+                            <button type="button" onclick="cancelBarcodeFound()" class="glass-card px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap">
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                    <form id="add-product-form" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <input type="text" id="inp-name" placeholder="Nombre" class="input-glass px-3 py-2.5 text-sm" required>
+                        <input type="number" id="inp-price" placeholder="Precio" class="input-glass px-3 py-2.5 text-sm" step="0.01" required>
+                        <input type="number" id="inp-qty" placeholder="Cantidad" class="input-glass px-3 py-2.5 text-sm" required>
+
+                        <select id="inp-category" class="input-glass px-3 py-2.5 text-sm">
+                            <option value="General">General</option>
+                            <option value="Bebidas">Bebidas</option>
+                            <option value="Alimentos">Alimentos</option>
+                            <option value="Electrónica">Electrónica</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                        <button type="submit" class="btn-primary px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 col-span-2 md:col-span-1">
+                            <i data-lucide="plus" style="width:16px;height:16px;"></i> Agregar
+                        </button>
+                    </form>
+                </div>
+                <div class="flex-1 overflow-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-white/40 text-left border-b border-white/10">
+                                <th class="pb-2 px-3">Producto</th>
+                                <th class="pb-2 px-3">Categoría</th>
+                                <th class="pb-2 px-3">Precio</th>
+                                <th class="pb-2 px-3">Stock</th>
+                                <th class="pb-2 px-3">Vendidos</th>
+                                <th class="pb-2 px-3"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-table"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="view-dashboard" class="hidden h-full overflow-auto fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+                    <div class="glass p-5 fade-in stagger-1">
+                        <p class="text-xs text-white/40 mb-1">Total Productos</p>
+                        <p id="stat-products" class="text-2xl font-bold text-red-300">0</p>
+                    </div>
+                    <div class="glass p-5 fade-in stagger-2">
+                        <p class="text-xs text-white/40 mb-1">Ventas Totales</p>
+                        <p id="stat-sales" class="text-2xl font-bold text-emerald-300">$0</p>
+                    </div>
+                    <div class="glass p-5 fade-in stagger-3">
+                        <p class="text-xs text-white/40 mb-1">Items Vendidos</p>
+                        <p id="stat-items" class="text-2xl font-bold text-pink-300">0</p>
+                    </div>
+                </div>
+                <div class="glass p-5 mb-4">
+                    <h3 class="font-semibold text-sm text-white/70 mb-4">Ventas por Día (Últimos 7 días)</h3>
+                    <div id="sales-chart" class="h-48 flex items-end gap-2 justify-center"></div>
+                    <p id="no-chart-msg" class="text-white/30 text-sm text-center py-12">Sin datos de ventas aún</p>
+                </div>
+                <div class="glass p-5 mb-4">
+                    <h3 class="font-semibold text-sm text-white/70 mb-4">Productos Más Vendidos Hoy</h3>
+                    <div class="overflow-auto">
+                        <table class="w-full text-xs">
+                            <thead>
+                                <tr class="text-white/40 text-left border-b border-white/10">
+                                    <th class="pb-2 px-3">Posición</th>
+                                    <th class="pb-2 px-3">Producto</th>
+                                    <th class="pb-2 px-3">Vendidos Hoy</th>
+                                    <th class="pb-2 px-3">Ingresos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="daily-top-products"></tbody>
+                        </table>
+                    </div>
+                    <p id="no-daily-msg" class="text-white/30 text-sm text-center py-6">Sin ventas registradas hoy</p>
+                </div>
+                <div class="glass p-5">
+                    <h3 class="font-semibold text-sm text-white/70 mb-4">Productos Más Vendidos (Total)</h3>
+                    <div id="top-products" class="space-y-3"></div>
+                    <p id="no-sales-msg" class="text-white/30 text-sm text-center py-8">Aún no hay ventas registradas</p>
+                </div>
+            </div>
+        </main>
+
+        <div id="password-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center" style="background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);">
+            <div class="glass p-6 max-w-sm w-full mx-4 text-center">
+                <p class="text-lg font-semibold mb-1">Acceso a Inventario</p>
+                <p class="text-sm text-white/50 mb-4">Ingresa la clave de acceso</p>
+                <input type="password" id="inp-clave-inventario" placeholder="Clave de acceso" class="input-glass w-full px-3 py-2.5 text-sm mb-4" onkeydown="if(event.key==='Enter')confirmClaveInventario()">
+                <p id="clave-error" class="text-red-400 text-xs mb-3 hidden">Clave incorrecta</p>
+                <div class="flex gap-3 justify-center">
+                    <button type="button" onclick="cancelarClaveInventario()" class="px-5 py-2 rounded-xl glass-card text-sm font-medium">Cancelar</button>
+                    <button type="button" onclick="confirmClaveInventario()" class="btn-primary px-5 py-2 rounded-xl text-sm font-medium">Acceder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/pos.js" asp-append-version="true"></script>
+</body>
+</html>
