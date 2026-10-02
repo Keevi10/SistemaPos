@@ -8,15 +8,16 @@ builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
+// Middleware con CSP actualizado para permitir CDNs en connect-src y scripts
 app.Use(async (context, next) =>
 {
     context.Response.Headers.Append("Content-Security-Policy",
         "default-src 'self'; " +
         "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; " +
-        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
-        "font-src 'self' https://fonts.gstatic.com; " +
-        "img-src 'self' data:; " +
-        "connect-src 'self' ws: wss: http://localhost:* https://localhost:*; " +
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; " +
+        "font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
+        "img-src 'self' data: blob: https:; " +
+        "connect-src 'self' ws: wss: http://localhost:* https://localhost:* https://cdn.jsdelivr.net https://cdn.tailwindcss.com; " +
         "form-action 'self';");
     await next();
 });
@@ -33,9 +34,9 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Pos/Error");
     app.UseHsts();
+    app.UseHttpsRedirection(); // Solo forzar HTTPS en Producción
 }
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();

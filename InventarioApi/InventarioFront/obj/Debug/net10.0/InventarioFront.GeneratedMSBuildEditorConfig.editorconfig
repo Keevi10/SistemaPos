@@ -12,69 +12,69 @@ build_property.EntryPointFilePath =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = InventarioFront
 build_property.RootNamespace = InventarioFront
-build_property.ProjectDir = C:\Users\Kevin pinto\Desktop\SistemaPos\InventarioApi\InventarioFront\
+build_property.ProjectDir = /run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 10.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Kevin pinto\Desktop\SistemaPos\InventarioApi\InventarioFront
+build_property.MSBuildProjectDirectory = /run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Components/App.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Components/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Components/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Db3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Components/Pages/Error.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9FcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Components/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Components/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Components/Pages/NotFound.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Components/Pages/NotFound.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ob3RGb3VuZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Components/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Components/Pages/Weather.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9XZWF0aGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Components/Routes.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Sb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Components/_Imports.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9fSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Components/Layout/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-xe6a8elukb
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-klfrpwd7j2
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Components/Layout/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-l6vwkexof0
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Components/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2TWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-k035q16qyr
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Components/Layout/ReconnectModal.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcUmVjb25uZWN0TW9kYWwucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-basry54vvr
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Components/Layout/ReconnectModal.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvUmVjb25uZWN0TW9kYWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-0g2jvd3wg4
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Views/Pos/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zXEluZGV4LmNzaHRtbA==
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Views/Pos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUG9zL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kevin pinto/Desktop/SistemaPos/InventarioApi/InventarioFront/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[/run/media/kevinpinto/Nuevo vol/SistemaPos/SistemaPos/InventarioApi/InventarioFront/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
